@@ -1,7 +1,6 @@
 'use strict'
 
 const { app, BrowserWindow, dialog } = require("electron");
-const pug = require('electron-pug')({pretty: true});
 const path = require('path');
 const url = require('url');
 
@@ -15,7 +14,7 @@ function createWindow(){
 
   mainWindow.loadURL(
     url.format({
-      pathname: path.join(__dirname, "app/index.html"),
+      pathname: path.join(__dirname, "build/index.html"),
       protocol: 'file:',
       slashes: true
     })

@@ -14,7 +14,6 @@ module.exports = {
       { from: './app/index.html', to: 'index.html' }
     ])
   ],
-  devtool: 'source-map',
   module: {
     rules: [
       { test: /\.s?css$/, use: [ 'style-loader', 'css-loader', 'sass-loader' ] },
