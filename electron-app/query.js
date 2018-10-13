@@ -31,6 +31,7 @@ app.post('/insert', (req, res) => {
 	var q = db.prepare("INSERT INTO keys VALUES(?, ?)");
 	q.run(null, req.body.key); 
 	q.finalize();
+  res.end();
 	console.log('Inserted!');
 });
 
