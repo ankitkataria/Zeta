@@ -1,0 +1,16 @@
+{
+  "name": "ipfs-node-client",
+  "version": "1.0.0",
+  "description": "IPFS node client.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "fristonio",
+  "license": "MIT",
+  "dependencies": {
+    "ipfs": "^0.32.3",
+    "ipfs-api": "^24.0.2",
+    "js-ipfs": "0.0.301"
+  }
+}
