@@ -52,12 +52,17 @@ const App = {
 
   uploadFile: function (e) {
     var self = this
-    var filePath = 'tu dekh liyo'
+    var file = $('#doc-upload')
+    var filePath = self.distributePath(file)
 
     Files.deployed().then(function (instance) {
       instance.addPublicDocument(filePath, { from: account, gas: 140000 })
       self.refreshBalance()
     })
+  },
+
+  distributeFile: function (file) {
+    return 'file_url'
   }
 }
 
