@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/main.css">
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Main application</title>
   </head>
   <body>
     <div class="container-fluid">
@@ -18,13 +18,13 @@
               <a href="#home" class="nav-link active" data-toggle="tab" role="tab" aria-controls="home">Home</a>
             </li>
             <li class="nav-item">
-              <a href="#tab2" class="nav-link" data-toggle="tab" role="tab" aria-controls="ipsum">Tab 2</a>
+              <a href="#tab2" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab2">Tab 2</a>
             </li>
             <li class="nav-item">
-              <a href="#tab3" class="nav-link " data-toggle="tab" role="tab" aria-controls="dolor">Tab 3</a>
+              <a href="#tab3" class="nav-link " data-toggle="tab" role="tab" aria-controls="tab3">Get a Journalist</a>
             </li>
             <li class="nav-item">
-              <a href="#tab4" class="nav-link" data-toggle="tab" role="tab" aria-controls="sit-amet">Tab 4</a>
+              <a href="#tab4" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab4">Tab 4</a>
             </li>
           </ul>
         </nav>
@@ -32,16 +32,28 @@
         <main class="d-flex justify-content-center align-items-center col-sm-10">
           <div class="tab-content">
             <div class="tab-pane fade show active" id="home" role="tabpanel">
-              <h1>Home</h1>
-              <p> Home sweet home</p>
+              <h1>InOut</h1>
+              <div id="status"></div>
+              <h2> Account Info </h2>
+              <div class="info">
+                <div class="address">Account <span id="account-address"> </span></div> 
+                <div class="balance">Balance <span id="account-balance"> </span></div>
+              </div>
+              <h2> Upload File </h2>
+              <form id="upload-form" onsubmit="App.uploadFile();">
+                <label for="document"> File </label>
+                <input name="document" id='doc-upload' type="file" required> 
+              </form>
+              <button id="submit-btn" onclick="App.uploadFile()">Submit</button>
+              <p>Are you a Journalist? <button id="reg-journalist">Register</button></p>
             </div>
             <div class="tab-pane fade" id="tab2" role="tabpanel">
               <h1>Tab 2</h1>
               <p> Some random shit!</p>
             </div>
             <div class="tab-pane fade" id="tab3" role="tabpanel">
-              <h1>Tab 3</h1>
-              <p>More random shit!!</p>
+              <h1>Find the one you want!</h1>
+              <div class="journalists"></div>
             </div>
             <div class="tab-pane fade" id="tab4" role="tabpanel">
               <h1>Tab 4</h1>
@@ -53,4 +65,5 @@
     </div>
   </body>
   <script src="scripts/renderer.js"></script>
+  <script src="scripts/main.js"></script>
 </html>
