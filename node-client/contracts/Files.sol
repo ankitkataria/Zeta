@@ -17,6 +17,8 @@ contract Files {
 	// to the Private Docs
 	mapping (address => PrivateDoc[]) public privateShares;
 
+	PublicDoc[] public publicSharesList;
+
 	// mapping from an id to describe a file to its meta deta
 	mapping (uint => PublicDoc) public publicShares;
 
@@ -35,6 +37,13 @@ contract Files {
 			downvotes: 0,
 			uploader: msg.sender
 		});
+
+		publicSharesList.push(PublicDoc({
+			url: _url,
+			upvotes: 0,
+			downvotes: 0,
+			uploader: msg.sender
+		}));
 	}
 
 	function vote(uint _id, int _change) public {
@@ -51,5 +60,17 @@ contract Files {
 	function addDocument(string _url, address _shareTo) public {
 		_addPrivate(_url, _shareTo);
 	}
+
+	function getPublicSharesListCount() public view returns(uint){
+		return publicSharesList.length;
+	}
+
+	function getPublicShareInfo(uint index) public view returns (uint, string, uint, uint) {
+		return (index, publicSharesList[index].url, publicSharesList[index].upvotes, publicSharesList[index].downvotes);
+	}
+
+	// function getPublicShares() public returns() {
+	// 	return publicShares;
+	// }
 }
 
