@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>InOut 18</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <script src="./app.js"></script>
+</head>
+<body>
+  <h1>InOut</h1>
+  
+  <h2> Upload File </h2>
+
+  <div id="status"></div>
+
+  <div class="info">
+    <div class="address">Account <span id="account-address"> </span></div> 
+    <div class="balance">Balance <span id="account-balance"> </span></div>
+  </div>
+
+  <form id="upload-form" onsubmit="App.uploadFile();">
+    <label for="document"> File </label>
+    <input name="document" id='doc-upload' type="file" required> 
+  </form>
+  <button id="submit-btn" onclick="App.uploadFile()">Submit</button>
+</body>
+</html>
