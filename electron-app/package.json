@@ -10,8 +10,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "crypto": "^1.0.1",
     "electron": "^3.0.4",
-    "electron-pug": "^2.0.0"
+    "electron-pug": "^2.0.0",
+    "node-rsa": "^1.0.1"
   },
   "devDependencies": {
     "electron-prebuilt": "^1.4.13"
