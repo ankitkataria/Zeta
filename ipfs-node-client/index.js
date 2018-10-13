@@ -2,7 +2,17 @@ const IPFS = require('ipfs')
 const ipfsAPI = require('ipfs-api')
 
 
-const node = new IPFS({ start: false })
+const node = new IPFS({
+  start: false,
+  config: {
+    Addresses: {
+      Swarm: [
+        "/ip4/0.0.0.0/tcp/4002",
+        "/ip4/127.0.0.1/tcp/4003/ws",
+      ]
+    }
+  }
+})
 
 let addBlockToBlockChain = function(hash) {
   console.log("Adding ipfs link to blockchain : ", hash)
@@ -20,10 +30,9 @@ let uploadFileToIpfs = async function(node) {
   // Default port for IPFS api is 5002
   var ipfs = ipfsAPI('/ip4/127.0.0.1/tcp/4002')
   var ik = setInterval(_ => {
-
-    ipfs.dht.findprovs(filesAdded[0].hash, (err, peerInfos) => {
+    ipfs.dht.findprovs(filesAdded, (err, peerInfos) => {
       if (err) {
-        // console.log("Error occured while finding peers : ", err)
+        // console.error("Error occured while finding peers : ", err)
         clearInterval(ik)
       } else {
         console.log("Peer info is : ", peerInfos)
