@@ -5,15 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "q-server": "node query.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "crypto": "^1.0.1",
     "electron": "^3.0.4",
     "electron-pug": "^2.0.0",
-    "node-rsa": "^1.0.1"
+    "express": "^4.16.4",
+    "node-rsa": "^1.0.1",
+    "sqlite3": "^4.0.2"
   },
   "devDependencies": {
     "electron-prebuilt": "^1.4.13"
