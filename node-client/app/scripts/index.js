@@ -1,7 +1,9 @@
 import '../styles/app.css'
 
+import $ from 'jquery'
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
+import uploadFile from './ipfs_upload'
 
 import filesArtifact from '../../build/contracts/Files.json'
 
@@ -51,19 +53,20 @@ const App = {
   },
 
   uploadFile: function (e) {
-    var self = this
+    var state = this
     var file = $('#doc-upload')
-    var filePath = self.distributePath(file)
 
-    Files.deployed().then(function (instance) {
-      instance.addPublicDocument(filePath, { from: account, gas: 140000 })
-      self.refreshBalance()
-    })
+    let updateContract = function(state, hash) {
+      console.log("Inside update contract function")
+      Files.deployed().then(function (instance) {
+        let filePath = `https://ipfs.io/ipfs/${hash}`
+        instance.addPublicDocument(filePath, { from: account, gas: 140000 })
+        state.refreshBalance()
+      })
+    }
+
+    uploadFile(file, updateContract, state)
   },
-
-  distributeFile: function (file) {
-    return 'file_url'
-  }
 }
 
 window.App = App
@@ -74,9 +77,9 @@ window.addEventListener('load', function () {
     console.warn('Using web3 detected from external source.')
     window.web3 = new Web3(web3.currentProvider)
   } else {
-    console.warn('No web3 detected. Falling back to http://127.0.0.1:9545.')
+    console.warn('No web3 detected. Falling back to http://127.0.0.1:7545.')
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-    window.web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:9545'))
+    window.web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'))
   }
 
   App.start()
