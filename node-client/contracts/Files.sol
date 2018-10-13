@@ -50,7 +50,11 @@ contract Files {
 		if(_change == 1)
 			publicShares[_id].upvotes += 1;
 		else 
-			publicShares[_id].downvotes -=1;
+			publicShares[_id].downvotes +=1;
+	}
+
+	function getVotes(uint _id) view public returns (uint a, uint b) {
+		return (publicShares[_id].upvotes, publicShares[_id].downvotes);
 	}
 
 	function addPublicDocument(string _url) public {
