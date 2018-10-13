@@ -4,6 +4,7 @@ import $ from 'jquery'
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
 import uploadFile from './ipfs_upload'
+require('abortcontroller-polyfill/dist/polyfill-patch-fetch')
 
 import filesArtifact from '../../build/contracts/Files.json'
 
