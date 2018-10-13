@@ -1,183 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Photon</title>
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/photon.min.css">
-
-    <!-- Javascript -->
-    <script src="js/menu.js" charset="utf-8"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Dashboard Template for Bootstrap</title>
   </head>
   <body>
-    <div class="window">
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-sm-2">
+          <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="navigation">
+            <li class="nav-item">
+              <a href="#home" class="nav-link active" data-toggle="tab" role="tab" aria-controls="home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#tab2" class="nav-link" data-toggle="tab" role="tab" aria-controls="ipsum">Tab 2</a>
+            </li>
+            <li class="nav-item">
+              <a href="#tab3" class="nav-link " data-toggle="tab" role="tab" aria-controls="dolor">Tab 3</a>
+            </li>
+            <li class="nav-item">
+              <a href="#tab4" class="nav-link" data-toggle="tab" role="tab" aria-controls="sit-amet">Tab 4</a>
+            </li>
+          </ul>
+        </nav>
 
-      <!-- .toolbar-header sits at the top of your app -->
-      <header class="toolbar toolbar-header">
-        <h1 class="title">Photon</h1>
-      </header>
-
-      <!-- Your app's content goes inside .window-content -->
-      <div class="window-content">
-        <div class="pane-group">
-          <div class="pane pane-sm sidebar">
-            <nav class="nav-group">
-              <h5 class="nav-group-title">Favorites</h5>
-              <span class="nav-group-item">
-                <span class="icon icon-home"></span>
-                connors
-              </span>
-              <span class="nav-group-item active">
-                <span class="icon icon-light-up"></span>
-                Photon
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-download"></span>
-                Downloads
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-folder"></span>
-                Documents
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-window"></span>
-                Applications
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-signal"></span>
-                AirDrop
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-monitor"></span>
-                Desktop
-              </span>
-            </nav>
+        <main class="d-flex justify-content-center align-items-center col-sm-10">
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="home" role="tabpanel">
+              <h1>Home</h1>
+              <p> Home sweet home</p>
+            </div>
+            <div class="tab-pane fade" id="tab2" role="tabpanel">
+              <h1>Tab 2</h1>
+              <p> Some random shit!</p>
+            </div>
+            <div class="tab-pane fade" id="tab3" role="tabpanel">
+              <h1>Tab 3</h1>
+              <p>More random shit!!</p>
+            </div>
+            <div class="tab-pane fade" id="tab4" role="tabpanel">
+              <h1>Tab 4</h1>
+              <p> Even more random shit!!!</p>
+            </div>
           </div>
-
-          <div class="pane">
-            <table class="table-striped">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Kind</th>
-                  <th>Date Modified</th>
-                  <th>Author</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="file_arq">
-                  <td>bars.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>base.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>button-groups.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>buttons.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>docs.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>forms.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>grid.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>icons.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>images.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>lists.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>mixins.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>navs.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>normalize.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>photon.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>tables.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>tabs.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>utilities.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr class="file_arq">
-                  <td>variables.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        </main>
       </div>
     </div>
   </body>
+  <script src="scripts/renderer.js"></script>
 </html>
