@@ -1,26 +1,75 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>InOut 18</title>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-  <script src="./app.js"></script>
-</head>
-<body>
-  <h1>InOut</h1>
-  
-  <h2> Upload File </h2>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <title>Main application</title>
+    <script src="./app.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-sm-2">
+          <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="navigation">
+            <li class="nav-item">
+              <a href="#home" class="nav-link active" data-toggle="tab" role="tab" aria-controls="home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#tab2" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab2">Tab 2</a>
+            </li>
+            <li class="nav-item">
+              <a href="#tab3" class="nav-link " data-toggle="tab" role="tab" aria-controls="tab3">Get a Journalist</a>
+            </li>
+            <li class="nav-item">
+              <a href="#tab4" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab4">Tab 4</a>
+            </li>
+          </ul>
+        </nav>
 
-  <div id="status"></div>
+        <main class="d-flex justify-content-center align-items-center col-sm-10">
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="home" role="tabpanel">
+              <h1>InOut</h1>
+              <div id="status"></div>
+              <h2> Account Info </h2>
+              <div class="info">
+                <div class="address">Account <span id="account-address"> </span></div> 
+                <div class="balance">Balance <span id="account-balance"> </span></div>
+              </div>
+              <h2> Upload File </h2>
+              <form id="upload-form" onsubmit="App.uploadFile();">
+                <label for="document"> File </label>
+                <input name="document" id='doc-upload' type="file" required> 
+              </form>
+              <button id="submit-btn" onclick="App.uploadFile()">Submit</button>
+              <p>Are you a Journalist? <button id="reg-journalist">Register</button></p>
+            </div>
 
-  <div class="info">
-    <div class="address">Account <span id="account-address"> </span></div> 
-    <div class="balance">Balance <span id="account-balance"> </span></div>
-  </div>
+            <div class="tab-pane fade" id="tab2" role="tabpanel">
+              <h1>Tab 2</h1>
+              <p> Some random shit!</p>
+            </div>
 
-  <form id="upload-form" onsubmit="App.uploadFile();">
-    <label for="document"> File </label>
-    <input name="document" id='doc-upload' type="file" required> 
-  </form>
-  <button id="submit-btn" onclick="App.uploadFile()">Submit</button>
-</body>
+            <div class="tab-pane fade" id="tab3" role="tabpanel">
+              <h1>Find the one you want!</h1>
+              <div class="journalists"></div>
+            </div>
+
+            <div class="tab-pane fade" id="tab4" role="tabpanel">
+              <h1>Tab 4</h1>
+              <p> Even more random shit!!!</p>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+
+
+  <script src="scripts/renderer.js"></script>
+  <script src="scripts/main.js"></script>
 </html>
