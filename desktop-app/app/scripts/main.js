@@ -1,4 +1,7 @@
 const queryServer = 'http://localhost:5000/';
+const currentWindow = require('electron').remote.getCurrentWindow();
+const url = require('url');
+const path = require('path');
 
 $('#reg-journalist').click(() => register());
 
@@ -23,7 +26,6 @@ function getKeys() {
 }
 
 function register() {
-  const currentWindow = require('electron').remote.getCurrentWindow();
   fetch(queryServer + 'insert', {
     method: 'POST',
     body: 'key=' + currentWindow.custom.keys.pubKey,
@@ -34,7 +36,19 @@ function register() {
   getKeys();
 }
 
-$('#doc-upload').on('change',function(){
+$('#doc-upload').on('change',() => {
     var fileName = $(this).val();
     $(this).next('.custom-file-label').html(fileName);
-})
+});
+
+$('#private-messaging').click(() => {
+  currentWindow.loadURL(
+    url.format({
+      pathname: path.join(__dirname, 'chat.html'),
+      protocol: 'file:',
+      slashes: true
+    })
+  );
+
+});
+
