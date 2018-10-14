@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title> Public Upload </title>	
+	<script src="./app.js"></script>
+</head>
+<body>
+	<div id="private-share">
+		<form>
+			<lable for="private-doc"> Private Files </lable>
+			<input type="file" name="private-doc">
+
+			<select id="journalists-options">
+			</select>
+		</form>
+
+		<button id="submit-btn" onclick="App.uploadPrivateFile()">Submit</button>
+	</div>
+	<script src="scripts/main.js"></script>
+	<script> getKeyOptions() </script>	
+</body>
+</html>

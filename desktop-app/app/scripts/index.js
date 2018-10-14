@@ -9,6 +9,7 @@ require('abortcontroller-polyfill/dist/polyfill-patch-fetch')
 import filesArtifact from '../../build/contracts/Files.json'
 
 const Files = contract(filesArtifact)
+const queryServer = 'http://localhost:5000/'
 
 let accounts
 let account
@@ -80,6 +81,28 @@ const App = {
     uploadFile(file, updateContract, state)
   },
 
+  encryptWithPublicKey: function (filePath, journalistKey) {
+    // encryting the  file path using the
+    // the journalistKey as the private key
+  },
+
+  uploadPrivateFile: function (e) {
+    var state = this
+    var file = $('#private-doc')
+    var journalistKey = $('#journalists-options option:select').val()
+
+    let updateContract = function (state, hash) {
+      console.log('Inside update contract function')
+      Files.deployed().then(function (instance) {
+        let filePath = `https://ipfs.io/ipfs/${hash}`
+        instance.addDocument(state.encryptWithPublicKey(filePath, journalistKey), { from: account, gas: 6000000 })
+        state.refreshBalance()
+      })
+    }
+
+    uploadFile(file, updateContract, state)
+  },
+
   getFiles: function () {
     Files.deployed().then(function (instance) {
       let fileCount
@@ -105,6 +128,36 @@ const App = {
         }
       })
     })
+  },
+
+  getPrivateFiles: function () {
+    Files.deployed().then(function (instance) {
+      let fileCount
+      let fileInfoHtml = ''
+
+      instance.getPrivateSharesCount(account).then(function (res) {
+        fileCount = res
+
+        let i
+        for (i = 0; i < fileCount; i++) {
+          instance.getPrivateSharesInfo(account, i).then(function (file) {
+            fileInfoHtml += `<li class="file"> \
+ <a class="file-url-${file[0]}" href="#"> ${file[0]} </a> \
+<button class="show-encrypted-${file[0]}-btn" onclick="App.showEncrypted(${file[0]})"> Show </button> \
+<span id="decrpted-${file[0]}"> </span> </li>`
+          })
+          $('#my-private-shares').html(fileInfoHtml)
+        }
+      })
+    })
+  },
+
+  showEncrypted: function (url) {
+    // decrypt the url using the private key of the journalist 
+    let decryptedURL
+
+    $(`.file-url-${url}`).html(decryptedURL)
+    $(`.file-url-${url}`).attr('href', decryptedURL)
   },
 
   vote: function (id, change) {

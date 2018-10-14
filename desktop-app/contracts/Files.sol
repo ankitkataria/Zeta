@@ -72,5 +72,13 @@ contract Files {
 	function getPublicShareInfo(uint index) public view returns (uint, string, uint, uint) {
 		return (index, publicSharesList[index].url, publicSharesList[index].upvotes, publicSharesList[index].downvotes);
 	}
+
+	function getPrivateSharesCount(address j) public view returns (uint) {
+		return privateShares[j].length;
+	}
+
+	function getPrivateSharesInfo(address j, uint i) public view returns (string, address) {
+		return (privateShares[j][i].url, privateShares[j][i].address);
+	}
 }
 

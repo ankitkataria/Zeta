@@ -33,3 +33,22 @@ function register() {
   });
   getKeys();
 }
+
+function getKeyOptions () {
+  fetch(queryServer + 'get')
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      let items = []
+
+      $.each(data, (i, item) => {
+        items.push('<option key=' + item.key + '>' + item.key + '</option>')
+      })
+
+      $('#journalists-options').append(items.join(''))
+    })
+    .catch(err => {
+      throw err
+    })
+}
