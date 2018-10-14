@@ -11,10 +11,25 @@ const Files = contract(filesArtifact)
 let accounts
 let account
 
-let cryptWorker = new Worker('cryptoWorker.js')
-this.getWebWorkerResponse('set-private', currentWindow.custom.keys.privKey)
-
 const currentWindow = window.require('electron').remote.getCurrentWindow();
+
+let cryptWorker = new Worker('cryptoWorker.js')
+function getWebWorkerResponse (messageType, messagePayload) {
+  return new Promise((resolve, reject) => {
+    const messageId = Math.floor(Math.random() * 100000)
+    cryptWorker.postMessage([messageType, messageId].concat(messagePayload))
+    const handler = function (e) {
+      if (e.data[0] === messageId) {
+        e.currentTarget.removeEventListener(e.type, handler)
+        resolve(e.data[1])
+      }
+    }
+    cryptWorker.addEventListener('message', handler)
+  })
+}
+
+getWebWorkerResponse('set-private', currentWindow.custom.keys.privKey)
+
 
 function truncate(str, length) {
   return `${str.slice(0,length)}...`
@@ -32,20 +47,6 @@ String.prototype.hashCode = function(){
        hash = hash & hash; // Convert to 32bit integer
    }
    return hash;
-}
-
-function getWebWorkerResponse (messageType, messagePayload) {
-  return new Promise((resolve, reject) => {
-    const messageId = Math.floor(Math.random() * 100000)
-    cryptWorker.postMessage([messageType, messageId].concat(messagePayload))
-    const handler = function (e) {
-      if (e.data[0] === messageId) {
-        e.currentTarget.removeEventListener(e.type, handler)
-        resolve(e.data[1])
-      }
-    }
-    cryptWorker.addEventListener('message', handler)
-  })
 }
 
 const App = {
@@ -183,6 +184,7 @@ const App = {
  <a class="file-url-${file[0]}" href="#"> ${file[0]} </a> \
 <button class="show-encrypted-${file[0]}-btn" onclick="App.showEncrypted(${file[0]})"> Show </button> \
 <span id="decrpted-${file[0]}"> </span> </li>`
+            console.log(fileInfoHtml)
             $('#my-private-shares').html(fileInfoHtml)
           })
         }
