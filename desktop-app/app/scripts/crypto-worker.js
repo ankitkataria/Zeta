@@ -20,10 +20,17 @@ onmessage = function(e) {
     case 'decrypt':
       result = decrypt(text)
       break
+    case 'set-private':
+      setPrivateKey(key)
+      break
   }
 
   // Return result to the UI thread
   postMessage([ messageId, result ])
+}
+
+function setPrivateKey(key) {
+  privateKey = key
 }
 
 /** Generate and store keypair */

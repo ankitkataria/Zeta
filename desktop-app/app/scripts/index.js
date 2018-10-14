@@ -75,7 +75,7 @@ const App = {
       Files.deployed().then(function (instance) {
         let filePath = `https://ipfs.io/ipfs/${hash}`
         instance.addPublicDocument(filePath, { from: account, gas: 6000000 })
-        state.refreshBalance()
+          .then(_ => state.refreshBalance())
       })
     }
 
@@ -83,11 +83,13 @@ const App = {
   },
 
   getFiles: function () {
+    console.log("Getting files")
     Files.deployed().then(function (instance) {
       let fileCount
       let fileInfoHtml = ''
 
       instance.getPublicSharesListCount().then(function (res) {
+        console.log("File count", res)
         fileCount = res
 
         let fileInfo = []
@@ -95,7 +97,9 @@ const App = {
         let i
         for (i = 0; i < fileCount; i++) {
           instance.getPublicShareInfo(i).then(function (file) {
+            console.log(file)
             fileInfo.push(file)
+
             fileInfoHtml += `<li class="file"> \
  <a class="file-url-${file[0]}" href="${file[1]}"> ${file[1]} </a> \
 <button class="up-vote-${file[0]}-btn" onclick="App.vote(${file[0]}, 1)"> Up </button> \
@@ -119,10 +123,13 @@ const App = {
   },
 
   updateVotes: function (id) {
+    let self = this
     Files.deployed().then(function (instance) {
       instance.getVotes(id).then(function (votes) {
         $('#upvotes-' + id).html(votes[0].toNumber())
         $('#downvotes-' + id).html(votes[1].toNumber())
+
+        self.refreshBalance()
       })
     })
   }

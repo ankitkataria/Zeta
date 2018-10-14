@@ -7,7 +7,8 @@
     "lint": "eslint ./",
     "build": "rm -rf build/ && truffle compile && truffle migrate --network ganache && webpack-cli --config ./webpack.config.js",
     "start": "npm run build && electron .",
-    "server": "node key-server.js",
+    "key-server": "node key-server.js",
+    "chat-server": "babel-node chat-server.js",
     "new": "electron .",
     "dev": "webpack-dev-server"
   },
@@ -63,6 +64,7 @@
     "node-rsa": "^1.0.1",
     "popper.js": "^1.14.4",
     "solc": "^0.4.25",
-    "sqlite3": "^4.0.2"
+    "sqlite3": "^4.0.2",
+    "socket.io": "2.1.1"
   }
 }

@@ -14,7 +14,7 @@ let db = new sqlite3.Database('addresses.db', sqlite3.OPEN_READWRITE | sqlite3.O
 });
 
 db.serialize(() => {
-    db.run("CREATE TABLE IF NOT EXISTS keys (id INTEGER PRIMARY KEY, key TEXT)");
+    db.run("CREATE TABLE IF NOT EXISTS keys (id INTEGER PRIMARY KEY, key TEXT UNIQUE)");
 });
 
 app.get('/get', async (req, res, next) => {
@@ -28,9 +28,13 @@ app.get('/get', async (req, res, next) => {
 });
 
 app.post('/insert', (req, res) => {
-	var q = db.prepare("INSERT INTO keys VALUES(?, ?)");
-	q.run(null, req.body.key); 
-	q.finalize();
+  try {  
+	  var q = db.prepare("INSERT INTO keys VALUES(?, ?)");
+    q.run(null, req.body.key); 
+	  q.finalize();
+  } catch(er) {
+    console.log(e)
+  }
   res.end();
 	console.log('Inserted!');
 });

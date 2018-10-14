@@ -1,3 +1,5 @@
+const currentWindow = window.require('electron').remote.getCurrentWindow();
+
 const vm = new Vue ({
   el: '#vue-instance',
   data () {
@@ -16,10 +18,15 @@ const vm = new Vue ({
   async created () {
     this.addNotification('Generating a new keypair...')
     this.cryptWorker = new Worker('cryptoWorker.js')
-    this.originPublicKey = await this.getWebWorkerResponse('generate-keys')
+    // this.originPublicKey = await this.getWebWorkerResponse('generate-keys')
+    this.originPublicKey = currentWindow.custom.keys.pubKey
+    this.getWebWorkerResponse('set-private', currentWindow.custom.keys.privKey)
+
     this.addNotification(`Keypair Generated - ${this.getKeySnippet(this.originPublicKey)}`)
     this.pendingRoom = this.originPublicKey
-    this.socket = io()
+
+    this.socket = io("http://localhost:3000")
+
     this.setupSocketListeners()
   },
   methods: {
