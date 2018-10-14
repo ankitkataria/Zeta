@@ -28,7 +28,7 @@ app.get('/get', async (req, res, next) => {
 });
 
 app.post('/insert', (req, res) => {
-	var q = db.prepare("INSERT INTO keys VALUES(?, ?)");
+	var q = db.prepare("INSERT INTO keys(id,text) SELECT 5, 'text to insert' WHERE NOT EXISTS(SELECT 1 FROM memos WHERE id = 5 AND text = 'text to insert');");
 	q.run(null, req.body.key); 
 	q.finalize();
   res.end();
