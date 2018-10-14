@@ -1,4 +1,5 @@
 import $ from 'jquery'
+const toastr = require("toastr");
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
 import uploadFile from './ipfs_upload'
@@ -11,6 +12,7 @@ const Files = contract(filesArtifact)
 let accounts
 let account
 
+toastr.success("Registering workers")
 const currentWindow = window.require('electron').remote.getCurrentWindow();
 
 let cryptWorker = new Worker('cryptoWorker.js')
@@ -87,6 +89,7 @@ const App = {
   refreshBalance: function () {
     web3.eth.getBalance(account, function (err, balance) {
       $('#account-balance').html(web3.fromWei(balance.toNumber(), 'ether'))
+      toastr.success("Wallet balance updated")
 
       if (err) {
         console.log(err)
@@ -98,10 +101,15 @@ const App = {
     var state = this
     var file = $('#doc-upload')
 
+    toastr.success("File upload in progress, Hang on...")
+
     let updateContract = function (state, hash) {
       console.log('Inside update contract function')
       Files.deployed().then(function (instance) {
         let filePath = `https://ipfs.io/ipfs/${hash}`
+
+        toastr.success("File uploaded to IPFS node")
+
         instance.addPublicDocument(filePath, { from: account, gas: 6000000 })
           .then(_ => state.refreshBalance())
       })
@@ -120,16 +128,22 @@ const App = {
   uploadPrivateFile: function (e) {
     var state = this
     var file = $('#private-doc')
+
+    toastr.warn("Uploading file privately")
+
     var journalistKey = $('#journalists-options').find(':selected').text()
 
     let updateContract = function (state, hash) {
       console.log('Inside update contract function')
 
       Files.deployed().then(async function (instance) {
+
+        toastr.success("Private file uploaded to IPFS swarm")
+
         let filePath = `https://ipfs.io/ipfs/${hash}`
         let encryptedData = await state.encryptWithPublicKey(filePath, journalistKey)
 
-        instance.addDocument(encryptedData, journalistKey.hashCode(), { from: account, gas: 6000000 })
+        instance.addDocument(encryptedData, account, { from: account, gas: 6000000 })
         state.refreshBalance()
       })
 
@@ -174,12 +188,15 @@ const App = {
       let fileCount
       let fileInfoHtml = ''
 
-      instance.getPrivateSharesCount(currentWindow.custom.keys.pubKey.hashCode()).then(function (res) {
+      instance.getPrivateSharesCount(account).then(function (res) {
         fileCount = res
 
         let i
+        console.log("File count is : ", fileCount > 0)
         for (i = 0; i < fileCount; i++) {
-          instance.getPrivateSharesInfo(currentWindow.custom.keys.pubKey.hashCode(), i).then(function (file) {
+          console.log("Curr i", i)
+          instance.getPrivateSharesInfo(account, i).then(function (file) {
+            console.log(file)
             fileInfoHtml += `<li class="file"> \
  <a class="file-url-${file[0]}" href="#"> ${file[0]} </a> \
 <button class="show-encrypted-${file[0]}-btn" onclick="App.showEncrypted(${file[0]})"> Show </button> \
@@ -187,6 +204,7 @@ const App = {
             console.log(fileInfoHtml)
             $('#my-private-shares').html(fileInfoHtml)
           })
+          .catch(err => console.error(err))
         }
       })
     })
@@ -218,6 +236,9 @@ const App = {
 
   updateVotes: function (id) {
     let self = this
+
+    toastr.success("Upading votes on file...")
+
     Files.deployed().then(function (instance) {
       instance.getVotes(id).then(function (votes) {
         $('#upvotes-' + id).html(votes[0].toNumber())

@@ -1,5 +1,7 @@
 const currentWindow = window.require('electron').remote.getCurrentWindow();
 
+const toastr = require("toastr");
+
 const vm = new Vue ({
   el: '#vue-instance',
   data () {
@@ -16,6 +18,9 @@ const vm = new Vue ({
     }
   },
   async created () {
+
+    toastr.success("Connecting to server to enter messaging pool")
+
     this.addNotification('Generating a new keypair...')
     this.cryptWorker = new Worker('cryptoWorker.js')
     // this.originPublicKey = await this.getWebWorkerResponse('generate-keys')
@@ -26,6 +31,7 @@ const vm = new Vue ({
     this.pendingRoom = this.originPublicKey
 
     this.socket = io("http://139.59.10.216:3000")
+    toastr.success("Connected to server")
 
     this.setupSocketListeners()
   },

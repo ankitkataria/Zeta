@@ -2,6 +2,7 @@ const queryServer = 'http://139.59.10.216:5000/';
 const currentWindow = require('electron').remote.getCurrentWindow();
 const url = require('url');
 const path = require('path');
+const toastr = require("toastr");
 
 $('#reg-journalist').click(() => register());
 
@@ -30,6 +31,7 @@ function getKeys() {
 }
 
 function register() {
+  toastr.success("Registering Public key ...")
   fetch(queryServer + 'insert', {
     method: 'POST',
     body: 'key=' + currentWindow.custom.keys.pubKey,

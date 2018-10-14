@@ -166,3 +166,10 @@ main {
 .info {
   overflow-wrap: wrap;
 }
+
+#toast-index {
+  z-index: 9999 !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+}
