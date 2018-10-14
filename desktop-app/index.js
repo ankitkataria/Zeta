@@ -14,7 +14,7 @@ function createWindow() {
     height: 1400
   });
 
-  const keysPath = '.keys';
+  const keysPath = './keys';
 
   if (!fs.existsSync(keysPath)) {
     fs.writeFile(keysPath, generateKeyPair(), err => {

@@ -1,5 +1,6 @@
 node_modules/
 build/
 addresses.db
-.keys
+keys
 yarn.lock
+dist/
