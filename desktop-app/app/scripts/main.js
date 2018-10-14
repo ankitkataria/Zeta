@@ -5,7 +5,7 @@ $('#reg-journalist').click(() => register());
 getKeys();
 
 function getKeys() {
-	$('.journalists').html('');
+  $('.journalists').html('');
   fetch(queryServer + 'get')
     .then(response => {
       return response.json();
@@ -29,7 +29,12 @@ function register() {
     body: 'key=' + currentWindow.custom.keys.pubKey,
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
   }).then(response => {
-    console.log('Registration successful!');
+    jQuery('.reg-status').css('opacity', '1');
   });
   getKeys();
 }
+
+$('#doc-upload').on('change',function(){
+    var fileName = $(this).val();
+    $(this).next('.custom-file-label').html(fileName);
+})

@@ -1,5 +1,3 @@
-import '../styles/app.css'
-
 import $ from 'jquery'
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
@@ -12,6 +10,10 @@ const Files = contract(filesArtifact)
 
 let accounts
 let account
+
+function truncate(str, length) {
+  return `${str.slice(0,length)}...`
+}
 
 const App = {
   start: function () {
@@ -33,7 +35,7 @@ const App = {
 
       accounts = accs
       account = accounts[0]
-      $('#account-address').html(account)
+      $('#account-address').html(truncate(account, 25))
       self.refreshBalance()
       self.getFiles()
     })

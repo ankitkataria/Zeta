@@ -14,6 +14,7 @@ module.exports = {
       { from: './app/index.html', to: 'index.html' },
       { from: './app/scripts/renderer.js', to: 'scripts/renderer.js' },
       { from: './app/scripts/main.js', to: 'scripts/main.js' },
+      { from: './app/styles/app.css', to: 'styles/app.css' },
     ])
   ],
   node: {
