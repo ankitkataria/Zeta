@@ -16,9 +16,11 @@ According to Ethereum’s yellow paper, it is approximately 20,0000 gas for 256b
 
 1568.72 $ for storing a 1Mb file on the blockchain, which is way too much expensive. In order to reduce this cost, IPFS has been used. The smart contract will only contain the link of the file that has been stored. The actually files be divided, encrypted and distributed amoung all the nodes present in the IPFS network.
 
+![Homepage](/res/image.png)
+
 # Features
 
-### Anonymous File Sharing
+### Anonimity of Users
 
 All the files are shared by using the user's public key and no where else is the identity leaked. Hence our app protects the anonimity of all the doc transactions.
 
@@ -28,10 +30,32 @@ The users can choose amoung two type of sharing namely - Public and Private. The
 
 A user may leak a confidential document to a selective person over the internet using public-key infrastructure. In this case, the URL of the file that is stored in the smart contract is first encrypted using the receivers public key. Later, this is decryted using the private key of the intended user and files becomes available.
 
-### SpamScore
+![PublicPrivate share](/res/image2.png)
+
+### Spam-Score
 
 A voting mechanism has been implemented to maintain a dynamic spamscore that the receivers of the information can use to judge its authenticity. Currently, the users will have pay a small gas amount for voting, which will act as a deterrent of false votes. Later, this voting mechanism can be incentivized through a lottery system, much on the lines of [SpamSlam](https://github.com/CodeMaxx/SpamSlam)
 
-### An end-to-end encrypted chat based on signal
+![Spam score](/res/image1.png)
+
+### An E2E encrypted chat based on Signal
 
 While privately sharing information, there is provision for the receiver of the information to chat with the wistle blower. The chat is P2P and has been implemented on Signal Protocol which is popularly known for privacy first architecture.
+
+![Chat app](/res/image3.png)
+
+## Using the App
+
+```bash
+# Clone the repository
+$ git clone https://github.com/ankitkataria/zeta
+
+# Move to desktop-app/ directory
+$ cd desktop-app
+
+# Install the needed dependencies
+$ yarn install
+
+# Run the desktop application in development mode
+$ yarn start
+```
