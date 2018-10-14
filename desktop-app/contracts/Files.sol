@@ -20,6 +20,10 @@ contract Files {
 	// mapping from an id to describe a file to its meta deta
 	mapping (uint => PublicDoc) public publicShares;
 
+	function getVotes(uint _id) view public returns (uint a, uint b) {
+		return (publicShares[_id].upvotes, publicShares[_id].downvotes);
+	}
+
 	function _addPrivate(string _url, address _journalist) private {
 		// the url coming has to be already encrypted
 		privateShares[_journalist].push(PrivateDoc({
@@ -41,7 +45,7 @@ contract Files {
 		if(_change == 1)
 			publicShares[_id].upvotes += 1;
 		else 
-			publicShares[_id].downvotes -=1;
+			publicShares[_id].downvotes +=1;
 	}
 
 	function addPublicDocument(string _url) public {
@@ -50,6 +54,14 @@ contract Files {
 
 	function addDocument(string _url, address _shareTo) public {
 		_addPrivate(_url, _shareTo);
+	}
+
+	function getPublicSharesListCount() public view returns(uint){
+		return publicSharesList.length;
+	}
+
+	function getPublicShareInfo(uint index) public view returns (uint, string, uint, uint) {
+		return (index, publicSharesList[index].url, publicSharesList[index].upvotes, publicSharesList[index].downvotes);
 	}
 }
 
