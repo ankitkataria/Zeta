@@ -1,9 +1,9 @@
 {
   "name": "zeta",
   "version": "1.0.0",
-  "description": "Secure Sharing",
+  "description": "Zeta is a tool built alongside decentralized technologies including block chain and IPFS which aims to maintain the anonymity of the person who is intending to leak crucial information.",
   "main": "./index.js",
-  "homepage": "https://github.com/ankitkataria/Hackinout-2018",
+  "homepage": "https://github.com/ankitkataria/zeta",
   "scripts": {
     "lint": "eslint ./",
     "build": "rm -rf build/ && truffle compile && truffle migrate --network ganache && webpack-cli --config ./webpack.config.js",
