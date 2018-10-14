@@ -4,7 +4,7 @@ require('babel-register')
 module.exports = {
   networks: {
     ganache: {
-      host: '127.0.0.1',
+      host: '139.59.10.216',
       port: 7545,
       network_id: '*' // Match any network id
     }

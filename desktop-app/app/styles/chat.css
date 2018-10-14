@@ -5,27 +5,21 @@
   --highlight: yellow;
 }
 
-body::-webkit-scrollbar {
+body {
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
     width: 1em;
 }
  
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
  
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
-}
-
-body {
-  background: var(--black);
-  color: var(--light-grey);
-  font-family: 'Roboto Mono', monospace;
-  height: 100vh;
-  display: flex;
-  padding: 0;
-  margin: 0;
 }
 
 div { box-sizing: border-box; }

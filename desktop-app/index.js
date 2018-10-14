@@ -64,8 +64,8 @@ function generateKeyPair() {
   const key = new NodeRSA({
     b: 1024
   });
-  const pubKey = key.exportKey('pkcs8-public').replace('-----BEGIN PUBLIC KEY-----\n', '').replace('\n-----END PUBLIC KEY-----', '');
-  const privKey = key.exportKey('pkcs8-private').replace('-----BEGIN PRIVATE KEY-----\n', '').replace('\n-----END PRIVATE KEY-----', '');
+  const pubKey = key.exportKey('pkcs8-public');
+  const privKey = key.exportKey('pkcs8-private');
 
   return JSON.stringify({
     pubKey: pubKey,

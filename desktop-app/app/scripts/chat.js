@@ -25,7 +25,7 @@ const vm = new Vue ({
     this.addNotification(`Keypair Generated - ${this.getKeySnippet(this.originPublicKey)}`)
     this.pendingRoom = this.originPublicKey
 
-    this.socket = io("http://localhost:3000")
+    this.socket = io("http://139.59.10.216:3000")
 
     this.setupSocketListeners()
   },

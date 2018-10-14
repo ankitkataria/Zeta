@@ -1,9 +1,13 @@
-const queryServer = 'http://localhost:5000/';
+const queryServer = 'http://139.59.10.216:5000/';
 const currentWindow = require('electron').remote.getCurrentWindow();
 const url = require('url');
 const path = require('path');
 
 $('#reg-journalist').click(() => register());
+
+function truncate(str, length) {
+  return `${str.slice(0,length)}...`
+}
 
 getKeys();
 
@@ -36,12 +40,26 @@ function register() {
   getKeys();
 }
 
-$('#doc-upload').on('change',() => {
-    var fileName = $(this).val();
-    $(this).next('.custom-file-label').html(fileName);
-});
+function getKeyOptions () {
+  fetch(queryServer + 'get')
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      let items = []
 
-$('#private-messaging').click(() => {
+      $.each(data, (i, item) => {
+        items.push('<option value=' + item.key + '>' + truncate(item.key, 50) + '</option>')
+      })
+
+      $('#journalists-options').append(items.join(''))
+    })
+    .catch(err => {
+      throw err
+    })
+}
+
+function changeToChatWindow() {
   currentWindow.loadURL(
     url.format({
       pathname: path.join(__dirname, 'chat.html'),
@@ -49,6 +67,9 @@ $('#private-messaging').click(() => {
       slashes: true
     })
   );
+}
 
+$('#doc-upload').on('change',() => {
+    var fileName = $(this).val();
+    $(this).next('.custom-file-label').html(fileName);
 });
-

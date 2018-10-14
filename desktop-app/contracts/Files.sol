@@ -15,7 +15,7 @@ contract Files {
 
 	// mapping from the address of the receiver of the files
 	// to the Private Docs
-	mapping (address => PrivateDoc[]) public privateShares;
+	mapping (uint => PrivateDoc[]) public privateShares;
 
 	// mapping from an id to describe a file to its meta deta
 	mapping (uint => PublicDoc) public publicShares;
@@ -26,7 +26,7 @@ contract Files {
 		return (publicShares[_id].upvotes, publicShares[_id].downvotes);
 	}
 
-	function _addPrivate(string _url, address _journalist) private {
+	function _addPrivate(string _url, uint _journalist) private {
 		// the url coming has to be already encrypted
 		privateShares[_journalist].push(PrivateDoc({
 			url: _url,
@@ -61,7 +61,7 @@ contract Files {
 		_addPublic(_url);
 	}
 
-	function addDocument(string _url, address _shareTo) public {
+	function addDocument(string _url, uint _shareTo) public {
 		_addPrivate(_url, _shareTo);
 	}
 
@@ -71,6 +71,14 @@ contract Files {
 
 	function getPublicShareInfo(uint index) public view returns (uint, string, uint, uint) {
 		return (index, publicSharesList[index].url, publicSharesList[index].upvotes, publicSharesList[index].downvotes);
+	}
+
+	function getPrivateSharesCount(uint j) public view returns (uint) {
+		return privateShares[j].length;
+	}
+
+	function getPrivateSharesInfo(uint j, uint i) public view returns (string, address) {
+		return (privateShares[j][i].url, privateShares[j][i].uploader);
 	}
 }
 

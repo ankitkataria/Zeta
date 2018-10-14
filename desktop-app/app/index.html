@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="styles/app.css">
     <title>InOut Hack</title>
     <script src="./app.js"></script>
+    <script src="scripts/renderer.js"></script>
+    <script src="scripts/main.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -23,10 +25,17 @@
               <a href="#tab2" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab2" onclick="App.getFiles()">Spam Vote</a>
             </li>
             <li class="nav-item">
-              <a href="#tab3" class="nav-link " data-toggle="tab" role="tab" aria-controls="tab3">Get a Journalist</a>
+              <a href="#tab3" class="nav-link " data-toggle="tab" role="tab" aria-controls="tab3" onclick="getKeys()">Get a Journalist</a>
             </li>
             <li class="nav-item">
-              <a id="private-messaging" href="#tab4" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab4">Private Messaging</a>
+              <a id="private-share" href="#tab4" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab4" onclick="getKeyOptions()">Private Share</a>
+            </li>
+            <li class="nav-item">
+              <a id="private-messaging" href="#tab5" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab5" onclick="changeToChatWindow()">Private Messaging</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#tab6" class="nav-link" data-toggle="tab" role="tab" aria-controls="tab6" onclick="App.getPrivateFiles()">Private View</a>
             </li>
           </ul>
 
@@ -61,7 +70,7 @@
               <p class="reg-status">Registration Successful!</p>
               <p>
                 Looking for some real news?
-                <button type="button" id="reg-journalist" class="btn btn-outline-info">Register</button>
+                <button type="button" id="reg-journalist" class="btn btn-outline-info" onclick="register()">Register</button>
               </p>
             </div>
             <div class="tab-pane fade" id="tab2" role="tabpanel">
@@ -81,17 +90,33 @@
             </div>
 
             <div class="tab-pane fade" id="tab4" role="tabpanel">
-              <h1>Tab 4</h1>
-              <p> Even more random shit!!!</p>
+              <h1>Private Share</h1>
+              <div id="private-share">
+                <form>
+                  <lable for="private-doc"> Private Files </lable>
+                  <input type="file" name="private-doc" id="private-doc">
+
+                  <select id="journalists-options">
+                  </select>
+                </form>
+
+                <button id="submit-btn" onclick="App.uploadPrivateFile()">Submit</button>
+              </div>
             </div>
+
+            <div class="tab-pane fade" id="tab5" role="tabpanel">
+            <div class="wrapper">
+              <h1>Find the one you want!</h1>
+            </div>
+            </div>
+
+            <div class="tab-pane fade" id="my-private-share tab6" role="tabpanel">
+            </div>
+
           </div>
         </main>
 
       </div>
     </div>
   </body>
-
-
-  <script src="scripts/renderer.js"></script>
-  <script src="scripts/main.js"></script>
 </html>
