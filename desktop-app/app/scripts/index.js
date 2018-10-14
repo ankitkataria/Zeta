@@ -158,9 +158,9 @@ const App = {
 
             fileInfoHtml += `<li class="file"> \
  <a class="file-url-${file[0]}" href="${file[1]}"> ${file[1]} </a> \
-<button class="up-vote-${file[0]}-btn" onclick="App.vote(${file[0]}, 1)"> Up </button> \
+<button class="btn btn-outline-success up-vote-${file[0]}-btn" onclick="App.vote(${file[0]}, 1)"> Up </button> \
 <span id="upvotes-${file[0]}">  ${file[2].toNumber()} </span> \
-<button class="down-vote-${file[0]}-btn" onclick="App.vote(${file[0]}, -1)"> Down </button> \
+<button class="btn btn-outline-danger down-vote-${file[0]}-btn" onclick="App.vote(${file[0]}, -1)"> Down </button> \
 <span id="downvotes-${file[0]}"> ${file[3].toNumber()} </span> </li>`
             $('#public-shares').html(fileInfoHtml)
           })

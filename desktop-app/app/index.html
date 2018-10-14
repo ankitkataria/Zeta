@@ -73,7 +73,7 @@
                 <button type="button" id="reg-journalist" class="btn btn-outline-info" onclick="register()">Register</button>
               </p>
             </div>
-            <div class="tab-pane fade" id="tab2" role="tabpanel">
+            <div class="wrapper tab-pane fade" id="tab2" role="tabpanel">
               <h2>
                 All publicly shared files
               </h2>
@@ -89,18 +89,24 @@
             </div>
             </div>
 
-            <div class="tab-pane fade" id="tab4" role="tabpanel">
+            <div class="wrapper tab-pane fade" id="tab4" role="tabpanel">
               <h1>Private Share</h1>
               <div id="private-share">
                 <form>
-                  <lable for="private-doc"> Private Files </lable>
-                  <input type="file" name="private-doc" id="private-doc">
-
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" name="private-doc" id="private-doc" required>
+                      <label class="custom-file-label" for="private-doc">Private Files</label>
+                    </div>
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-info" type="button" id="submit-btn" onclick="App.uploadPrivateFile()">Upload</button>
+                    </div>
+                  </div>
                   <select id="journalists-options">
                   </select>
                 </form>
 
-                <button id="submit-btn" onclick="App.uploadPrivateFile()">Submit</button>
+                <button id="submit-btn" class="btn btn-outline-info" onclick="">Submit</button>
               </div>
             </div>
 
@@ -110,7 +116,7 @@
             </div>
             </div>
 
-            <div class="tab-pane fade" id="tab6" role="tabpanel">
+            <div class="wrapper tab-pane fade" id="tab6" role="tabpanel">
               <div id="my-private-shares">
                 
               </div> 
