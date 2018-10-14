@@ -20,6 +20,8 @@ contract Files {
 	// mapping from an id to describe a file to its meta deta
 	mapping (uint => PublicDoc) public publicShares;
 
+	PublicDoc[] public publicSharesList;
+
 	function getVotes(uint _id) view public returns (uint a, uint b) {
 		return (publicShares[_id].upvotes, publicShares[_id].downvotes);
 	}
@@ -39,6 +41,13 @@ contract Files {
 			downvotes: 0,
 			uploader: msg.sender
 		});
+
+		publicSharesList.push(PublicDoc({
+			url: _url,
+			upvotes: 0,
+			downvotes: 0,
+			uploader: msg.sender
+		}));
 	}
 
 	function vote(uint _id, int _change) public {

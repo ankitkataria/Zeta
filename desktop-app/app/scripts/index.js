@@ -68,11 +68,11 @@ const App = {
     var state = this
     var file = $('#doc-upload')
 
-    let updateContract = function(state, hash) {
-      console.log("Inside update contract function")
+    let updateContract = function (state, hash) {
+      console.log('Inside update contract function')
       Files.deployed().then(function (instance) {
         let filePath = `https://ipfs.io/ipfs/${hash}`
-        instance.addPublicDocument(filePath, { from: account, gas: 140000 })
+        instance.addPublicDocument(filePath, { from: account, gas: 6000000 })
         state.refreshBalance()
       })
     }
@@ -123,7 +123,7 @@ const App = {
         $('#downvotes-' + id).html(votes[1].toNumber())
       })
     })
-  }  
+  }
 }
 
 window.App = App
